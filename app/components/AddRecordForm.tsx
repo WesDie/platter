@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { PlusCircle } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const formats = ["Vinyl", "CD", "Cassette", "Digital", "Other"];
 const conditions = ["Mint", "Excellent", "Good", "Fair", "Poor"];
@@ -59,9 +59,8 @@ export function AddRecordForm({ userId }: { userId: number }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full sm:w-auto">
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add New Record
+        <Button className="w-fit m-auto" variant="outline">
+          <Plus className="rounded-full border-2" />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -121,7 +120,12 @@ export function AddRecordForm({ userId }: { userId: number }) {
             <Textarea id="notes" name="notes" />
           </div>
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={isLoading}
+            aria-label="Add Record"
+          >
             {isLoading ? "Adding..." : "Add Record"}
           </Button>
         </form>
