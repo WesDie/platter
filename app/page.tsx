@@ -1,11 +1,11 @@
-import { RecordsList } from "@/app/components/RecordsList";
 import { TopNavBar } from "./components/TopNavigation";
+import { MainRecords } from "./components/MainRecords";
 
 export default function Home() {
   return (
-    <main className="min-h-screen py-8 px-4">
+    <main className="min-h-screen">
       <TopNavBar />
-      <RecordsList userId={1} />
+      <MainRecords />
     </main>
   );
 }

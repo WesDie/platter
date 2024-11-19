@@ -6,7 +6,13 @@ import type { Record } from "@/app/db/schema";
 import Image from "next/image";
 import { AddRecordForm } from "./AddRecordForm";
 
-export function RecordsList({ userId }: { userId: number }) {
+export function RecordsList({
+  userId,
+  onRecordSelect,
+}: {
+  userId: number;
+  onRecordSelect: (record: Record) => void;
+}) {
   const [records, setRecords] = useState<Record[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -29,7 +35,7 @@ export function RecordsList({ userId }: { userId: number }) {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6 pt-14">
+    <div className="grid gap-4 auto-rows-auto grid-cols-[repeat(auto-fill,minmax(200px,1fr))] pt-24 px-4 overflow-y-auto max-h-screen scrollbar-hide">
       {records.map((record) => (
         <div
           key={record.id}
@@ -38,6 +44,7 @@ export function RecordsList({ userId }: { userId: number }) {
           }`}
           onMouseEnter={() => setHoveredId(record.id)}
           onMouseLeave={() => setHoveredId(null)}
+          onClick={() => onRecordSelect(record)}
         >
           {record.imageUrl ? (
             <div className="relative aspect-square overflow-hidden">
