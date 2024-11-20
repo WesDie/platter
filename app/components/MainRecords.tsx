@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
 export function MainRecords() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [selectedRecord, setSelectedRecord] = useState<Record | null>(null);
 
   const handleRecordSelect = (record: Record) => {
@@ -25,15 +25,15 @@ export function MainRecords() {
       className="w-full min-h-screen max-h-screen"
       direction="horizontal"
     >
-      <ResizablePanel defaultSize={70}>
+      <ResizablePanel>
         <RecordsList userId={1} onRecordSelect={handleRecordSelect} />
       </ResizablePanel>
       {!isCollapsed && (
         <>
           <ResizableHandle withHandle />
           <ResizablePanel
-            defaultSize={50}
             maxSize={75}
+            defaultSize={30}
             minSize={30}
             collapsible
             onCollapse={() => setIsCollapsed(true)}
